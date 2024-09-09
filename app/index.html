@@ -10,11 +10,27 @@
   <body>
     <div class="container">
       <div class="app">
-        <h2>To-Do List</h2>
+        <div class="header">
+          <h2>To-Do List</h2>
+          <div>
+            <p>Due Date: </p>
+            <input class="date" type="date">
+          </div>
+          
+        </div>
         <form class="form">
-          <input type="text" id="input-box" placeholder="Enter your text">
+          <input type="text" id="input-box" placeholder="Enter Task Here">
           <button type="submit">Add</button>
         </form>
+        <div class="row-above-ul">
+          <h4>To Do:</h4>
+          <select name="sort" id="sort">
+            <option value="all">All</option>
+            <option value="pending">Pending</option>
+            <option value="completed">Completed</option>
+            <option value="expired">Expired</option>
+          </select>
+        </div>
         <ul id="list-container">
         </ul>
       </div>
