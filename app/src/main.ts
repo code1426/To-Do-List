@@ -112,7 +112,7 @@ const filterTodos = (array: ToDo[], filter: string): ToDo[] => {
   case 'completed':
       return array.filter(toDo => toDo.isCompleted);
   case 'expired':
-      return array.filter(toDo => toDo.isExpired);
+      return array.filter(toDo => toDo.isExpired && !toDo.isCompleted);
   case 'all':
   default:
       return array;

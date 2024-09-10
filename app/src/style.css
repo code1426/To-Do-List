@@ -60,17 +60,23 @@ ul {
   border-radius: 10px;
   padding: 1px;
   margin-top: 4px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(221, 221, 221);
 }
 ul li {
   display: flex;
   list-style: none;
   font-size: 16px;
-  cursor: pointer;
   user-select: none;
   align-items: center;
   margin: 10px;
-  /* background-color: red; */
+  padding: 4px;
   border-radius: 10px;
+  background-color: #fff;
+  border-width: 2px;
+  border-color: rgb(221, 221, 221);
+  border-style: solid;
 }
 ul li input[type="checkbox"] {
   display: flex;
@@ -146,6 +152,7 @@ select {
   border-radius: 8px;
   background-color: #2cc88f;
   color: #fff;
+  cursor: pointer;
 }
 select:hover {
   background-color: #27a879;
