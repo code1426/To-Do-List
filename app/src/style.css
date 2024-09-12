@@ -13,6 +13,7 @@
 .app {
   width: 100%;
   max-width: 440px;
+  min-width: 310px;
   background: #fff;
   margin: 100px auto 20px;
   padding: 40px 30px 70px;
@@ -27,21 +28,22 @@
 .form {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
   background: #edeef0;
   border-radius: 30px;
   padding-left: 10px;
   margin-bottom: 40px;
 }
-input {
+.input {
   display: flex;
-  flex: 1;
+  flex: 1 0;
   border: none;
   outline: none;
   background: transparent;
   padding: 10px;
+  min-width: 100px;
 }
-button {
+.button {
   display: flex;
   border: none;
   outline: none;
@@ -51,6 +53,7 @@ button {
   border-radius: 30px;
   font-size: 16px;
   cursor: pointer;
+  justify-self: flex-end;
 }
 button:hover {
   background: #27a879;
@@ -131,7 +134,7 @@ ul p.no-task {
   margin-bottom: 2px;
   margin-right: 42px;
 }
-input[type="date"] {
+.date {
   margin-left: -38px;
   background-color: #f0eeed;
   display: block;
@@ -139,9 +142,11 @@ input[type="date"] {
   height: 30px;
   border-radius: 15px;
   cursor: pointer;
+  padding: 4px 8px;
+  border-style: none;
 }
 .row-above-ul {
-  display: flex;
+  display: flex; 
   justify-content: space-between;
   margin-bottom: 12px;
   align-items: center;

@@ -43,7 +43,7 @@ const textComponent = ({ isCompleted, title, stringDueDate, isExpired }: ToDo): 
     text.style.textDecoration = "line-through"
     text.style.color = "#9a9a9a"
   }
-  if (isExpired) {
+  if (isExpired && !isCompleted) {
     dueText.style.color = "#f43939"
     dueText.style.fontWeight = "700"
   }
