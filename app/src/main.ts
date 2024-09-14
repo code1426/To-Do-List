@@ -136,6 +136,7 @@ const handleSubmit = (event: Event): void => {
   const task = inputBox?.value.trim()
   const dueDate = date!.value
   if (task === "" || dueDate === "") {
+    alert("Invalid Input")
     return 
   }
 
