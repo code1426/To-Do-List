@@ -80,7 +80,7 @@ const deleteToDo = (id: number): void => {
 }
 
 const renderToDo = (array: ToDo[]): void => {
-  listContainer!.innerHTML = array.length ? "" :  "<img class='done' src='./public/done.png' alt='done'><p class='no-task'>Well Done!</p> <p class='sub-no-task'>Your to-do list is empty. Time to recharge.</p>"
+  listContainer!.innerHTML = array.length ? "" :  "<img class='done' src='../done.png' alt='done'><p class='no-task'>Well Done!</p><p class='sub-no-task'>Your to-do list is empty. Time to recharge.</p>"
 
   array.forEach(toDo => {
     toDo.isExpired = isTaskExpired(toDo);
