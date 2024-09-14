@@ -14,16 +14,16 @@
           <h2>To-Do List</h2>
           <div>
             <p>Due Date: </p>
-            <input class="date" type="date">
+            <input class="date" id="date-selector" type="date">
           </div>
           
         </div>
-        <form class="form">
+        <form class="form" id="form">
           <input type="text" class="input" id="input-box" placeholder="Enter Task Here">
           <button class="button" type="submit">Add</button>
         </form>
         <div class="row-above-ul">
-          <h4>To Do:</h4>
+          <h4>Tasks:</h4>
           <select name="sort" id="sort">
             <option value="all">All</option>
             <option value="pending">Pending</option>
@@ -32,6 +32,7 @@
           </select>
         </div>
         <ul id="list-container">
+          <p class='sub-no-task'>Your to-do list is empty. Time to recharge.</p>
         </ul>
       </div>
     </div>

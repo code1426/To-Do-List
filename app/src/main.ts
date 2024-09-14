@@ -1,7 +1,7 @@
 const inputBox = document.querySelector<HTMLInputElement>("#input-box")
 const listContainer = document.querySelector<HTMLUListElement>("#list-container")
-const form = document.querySelector<HTMLFormElement>(".form")
-const date = document.querySelector<HTMLInputElement>(".date")
+const form = document.querySelector<HTMLFormElement>("#form")
+const date = document.querySelector<HTMLInputElement>("#date-selector")
 const dropdown = document.querySelector<HTMLSelectElement>("#sort")
 let ToDoArray: ToDo[] = JSON.parse(localStorage.getItem('todos') || '[]');
 
@@ -20,30 +20,33 @@ const checkboxComponent = ({ id, isCompleted }: ToDo): HTMLInputElement => {
   checkbox.checked = isCompleted
   
   checkbox.onchange = () => {
-    const item = ToDoArray.find(item => item.id === id);
-    if (item) {
-      item.isCompleted = checkbox.checked;
-      localStorage.setItem('todos', JSON.stringify(ToDoArray));
-    }
-    renderToDo(filterTodos(ToDoArray, dropdown!.value))
+    handleToggle(id, checkbox)
   }
+
   return checkbox
 }
 
-const textComponent = ({ isCompleted, title, stringDueDate, isExpired }: ToDo): HTMLDivElement => {
+const textComponent = (todo: ToDo): HTMLDivElement => {
   const textContainer = document.createElement("div")
   const text = document.createElement("p");
-  text.innerText = title;
+  text.innerText = todo.title;
 
   const dueText = document.createElement("p")
-  dueText.innerText = stringDueDate;
+  dueText.innerText = todo.stringDueDate;
   dueText.className = "due-date"
-  
-  if (isCompleted) {
+
+  const checkbox = checkboxComponent(todo)
+
+  textContainer.onclick = () => {
+    checkbox.checked = todo.isCompleted ? false : true
+    handleToggle(todo.id, checkbox)
+  }
+
+  if (todo.isCompleted) {
     text.style.textDecoration = "line-through"
     text.style.color = "#9a9a9a"
   }
-  if (isExpired && !isCompleted) {
+  if (todo.isExpired && !todo.isCompleted) {
     dueText.style.color = "#f43939"
     dueText.style.fontWeight = "700"
   }
@@ -77,12 +80,21 @@ const deleteToDo = (id: number): void => {
 }
 
 const renderToDo = (array: ToDo[]): void => {
-  listContainer!.innerHTML = array.length ? "" : "<p class='no-task'>No Tasks.</p>";
+  listContainer!.innerHTML = array.length ? "" :  "<img class='done' src='./public/done.png' alt='done'><p class='no-task'>Well Done!</p> <p class='sub-no-task'>Your to-do list is empty. Time to recharge.</p>"
 
   array.forEach(toDo => {
     toDo.isExpired = isTaskExpired(toDo);
     createToDoItem(toDo);
   })
+}
+
+const handleToggle = (id:number, checkbox: HTMLInputElement): void => {
+  const item = ToDoArray.find(item => item.id === id);
+    if (item) {
+      item.isCompleted = checkbox.checked;
+      localStorage.setItem('todos', JSON.stringify(ToDoArray));
+    }
+    renderToDo(filterTodos(ToDoArray, dropdown!.value))
 }
 
 const isTaskExpired = (toDo: ToDo): boolean => {
@@ -123,7 +135,9 @@ const handleSubmit = (event: Event): void => {
   event.preventDefault()
   const task = inputBox?.value.trim()
   const dueDate = date!.value
-  if (task === "" || dueDate === "") return
+  if (task === "" || dueDate === "") {
+    return 
+  }
 
   const newTodo: ToDo = {
     id: Date.now(),

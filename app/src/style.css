@@ -7,16 +7,17 @@
 .container {
   width: 100%;
   min-height: 100vh;
-  background: linear-gradient(135deg, #32f47c, #018041);
+  background: linear-gradient(135deg, #32e4f4, #010980);
   padding: 10px;
 }
 .app {
   width: 100%;
   max-width: 440px;
   min-width: 310px;
+  min-height: 424px;
   background: #fff;
   margin: 100px auto 20px;
-  padding: 40px 30px 70px;
+  padding: 40px 30px 60px;
   border-radius: 12px;
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.274);
 }
@@ -29,10 +30,12 @@
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  background: #edeef0;
+  background: #fff;
   border-radius: 30px;
   padding-left: 10px;
   margin-bottom: 40px;
+  border: 1px solid #b4b4b4;
+  box-shadow: 2px 5px 12px rgba(0, 0, 0, 0.13);
 }
 .input {
   display: flex;
@@ -48,7 +51,7 @@
   border: none;
   outline: none;
   padding: 14px 45px;
-  background: #2cc88f;
+  background: #2710d5;
   color: #fff;
   border-radius: 30px;
   font-size: 16px;
@@ -56,16 +59,20 @@
   justify-self: flex-end;
 }
 button:hover {
-  background: #27a879;
+  background: #1b0b9a;
 }
 ul {
   background-color: #edeef0;
   border-radius: 10px;
-  padding: 1px;
+  padding: 8px;
   margin-top: 4px;
+  min-height: 154px;
   border-width: 1px;
   border-style: solid;
   border-color: rgb(221, 221, 221);
+  flex: 0 0;
+  flex-direction: column;
+  display: flex;
 }
 ul li {
   display: flex;
@@ -73,20 +80,26 @@ ul li {
   font-size: 16px;
   user-select: none;
   align-items: center;
-  margin: 10px;
-  padding: 4px;
+  margin: 8px;
+  margin-bottom: 8.72px;
+  padding: 8px;
   border-radius: 10px;
   background-color: #fff;
   border-width: 2px;
-  border-color: rgb(221, 221, 221);
+  border-color: rgba(0, 0, 0, 0.186);
   border-style: solid;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+ul li:hover {
+  margin-top: 1.5px;
+  margin-bottom: 15px;
+  box-shadow: 2px 4px 6px #8e8e8e8f;
 }
 ul li input[type="checkbox"] {
   display: flex;
   flex: 0;
-  /* height: 20px;
-  width: 20px; */
-  accent-color: #2cc88f;
+  accent-color: #2710d5;
   margin: 10px;
   cursor: pointer;
 }
@@ -94,14 +107,15 @@ ul li span {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 35px;
-  height: 35px;
+  width: 30px;
+  height: 30px;
   font-size: 22px;
   color: #555;
   border-radius: 50%;
 }
 ul li span:hover {
-  background: #d6d6d7;
+  background: #f90000;
+  color: #fff;
 }
 ul li div {
   display: flex;
@@ -114,8 +128,20 @@ ul li div .due-date {
   color: #7c7b7b;
 }
 ul p.no-task {
+  font-size: 18px;
+  margin: 10px;
+  margin-bottom: 0px;
+  text-align: center;
+  justify-self: center;
+  align-self: center;
+}
+.sub-no-task {
+  color: gray;
   font-size: 14px;
-  margin: 20px;
+  text-align: center;
+  align-self: center;
+  justify-self: center;
+  margin: 10px;
 }
 .header {
   display: flex;
@@ -145,6 +171,9 @@ ul p.no-task {
   padding: 4px 8px;
   border-style: none;
 }
+.date:hover {
+  border: 1px solid #00235a;
+}
 .row-above-ul {
   display: flex; 
   justify-content: space-between;
@@ -155,14 +184,22 @@ select {
   border-style: none;
   padding: 4px 8px;
   border-radius: 8px;
-  background-color: #2cc88f;
+  background-color: #2710d5;
   color: #fff;
   cursor: pointer;
+  user-select: none;
 }
 select:hover {
-  background-color: #27a879;
+  background-color: #1b0b9a;
 }
 option {
   color: #00235a;
   background-color: #ffffff;
+}
+.done {
+  width: 50px;
+  height: 50px;
+  margin: 10px;
+  justify-self: center;
+  align-self: center;
 }
