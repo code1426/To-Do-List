@@ -14,6 +14,18 @@ interface ToDo {
   isExpired: boolean;
 }
 
+const createNewTodo = (inputTitle: string, InputDate: string): ToDo => {
+  const newTodo: ToDo = {
+    id: Date.now(),
+    title: inputTitle.trim(),
+    isCompleted: false,
+    dueDate: new Date(InputDate),
+    stringDueDate: InputDate,
+    isExpired: false,
+  }
+  return newTodo
+}
+
 const checkboxComponent = ({ id, isCompleted }: ToDo): HTMLInputElement => {
   const checkbox = document.createElement("input")
   checkbox.setAttribute("type", "checkbox")
@@ -22,7 +34,6 @@ const checkboxComponent = ({ id, isCompleted }: ToDo): HTMLInputElement => {
   checkbox.onchange = () => {
     handleToggle(id, checkbox)
   }
-
   return checkbox
 }
 
@@ -38,7 +49,7 @@ const textComponent = (todo: ToDo): HTMLDivElement => {
   const checkbox = checkboxComponent(todo)
 
   textContainer.onclick = () => {
-    checkbox.checked = todo.isCompleted ? false : true
+    checkbox.checked = !todo.isCompleted
     handleToggle(todo.id, checkbox)
   }
 
@@ -81,7 +92,6 @@ const deleteToDo = (id: number): void => {
 
 const renderToDo = (array: ToDo[]): void => {
   listContainer!.innerHTML = array.length ? "" :  "<img class='done' src='../done.png' alt='done'><p class='no-task'>Well Done!</p><p class='sub-no-task'>Your to-do list is empty. Time to recharge.</p>"
-
   array.forEach(toDo => {
     toDo.isExpired = isTaskExpired(toDo);
     createToDoItem(toDo);
@@ -90,11 +100,12 @@ const renderToDo = (array: ToDo[]): void => {
 
 const handleToggle = (id:number, checkbox: HTMLInputElement): void => {
   const item = ToDoArray.find(item => item.id === id);
+  const filteredTodo = filterTodos(ToDoArray, dropdown!.value)
     if (item) {
       item.isCompleted = checkbox.checked;
       localStorage.setItem('todos', JSON.stringify(ToDoArray));
     }
-    renderToDo(filterTodos(ToDoArray, dropdown!.value))
+    renderToDo(filteredTodo)
 }
 
 const isTaskExpired = (toDo: ToDo): boolean => {
@@ -131,35 +142,31 @@ const filterTodos = (array: ToDo[], filter: string): ToDo[] => {
   }
 }
 
+const resetInputs = (): void => {
+  inputBox!.value = ""
+  date!.value = ""
+  dropdown!.value = "all"
+}
+
 const handleSubmit = (event: Event): void => {
   event.preventDefault()
-  const task = inputBox?.value.trim()
+  const task = inputBox!.value.trim()
   const dueDate = date!.value
+  const newTodo = createNewTodo(task, dueDate)
+
   if (task === "" || dueDate === "") {
     alert("Invalid Input")
     return 
-  }
-
-  const newTodo: ToDo = {
-    id: Date.now(),
-    title: inputBox!.value.trim(),
-    isCompleted: false,
-    dueDate: new Date(date!.value),
-    stringDueDate: date!.value,
-    isExpired: false,
   }
 
   ToDoArray.push(newTodo);
   localStorage.setItem('todos', JSON.stringify(ToDoArray));
   sortToDo(ToDoArray, "asc")
   renderToDo(ToDoArray)
-
-  inputBox!.value = ""
-  date!.value = ""
-  dropdown!.value = "all"
+  resetInputs()
 }
 
-const main = () => {
+const eventListeners = (): void => {
   form?.addEventListener("submit", (event) => handleSubmit(event))
 
   dropdown!.onchange = () => {
@@ -173,8 +180,7 @@ const main = () => {
         renderToDo(filterTodos(ToDoArray, dropdown!.value))
     }
   });
-
   renderToDo(ToDoArray)
 }
 
-main()
+eventListeners()

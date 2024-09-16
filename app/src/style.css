@@ -57,9 +57,10 @@
   font-size: 16px;
   cursor: pointer;
   justify-self: flex-end;
+  transition: all 0.125s ease-in-out;
 }
 button:hover {
-  background: #1b0b9a;
+  background: #180a85;
 }
 ul {
   background-color: #edeef0;
@@ -85,9 +86,7 @@ ul li {
   padding: 8px;
   border-radius: 10px;
   background-color: #fff;
-  border-width: 2px;
-  border-color: rgba(0, 0, 0, 0.186);
-  border-style: solid;
+  border: 2px solid rgba(0, 0, 0, 0.186);
   transition: all 0.2s ease-in-out;
   cursor: pointer;
 }
@@ -112,6 +111,7 @@ ul li span {
   font-size: 22px;
   color: #555;
   border-radius: 50%;
+  transition: all 0.125s ease-in-out;
 }
 ul li span:hover {
   background: #f90000;
@@ -171,6 +171,12 @@ ul p.no-task {
   padding: 4px 8px;
   border-style: none;
 }
+.date::-webkit-calendar-picker-indicator {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  cursor: pointer;
+}
 .date:hover {
   border: 1px solid #00235a;
 }
@@ -188,9 +194,10 @@ select {
   color: #fff;
   cursor: pointer;
   user-select: none;
+  transition: all 0.125s ease-in-out;
 }
 select:hover {
-  background-color: #1b0b9a;
+  background-color: #180a85;
 }
 option {
   color: #00235a;
