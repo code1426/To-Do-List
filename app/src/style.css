@@ -95,6 +95,11 @@ ul li:hover {
   margin-bottom: 15px;
   box-shadow: 2px 4px 6px #8e8e8e8f;
 }
+ul li:active {
+  margin-top: 1.5px;
+  margin-bottom: 15px;
+  box-shadow: 2px 4px 6px #8e8e8e8f;
+}
 ul li input[type="checkbox"] {
   display: flex;
   flex: 0;
